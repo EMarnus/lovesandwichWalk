@@ -28,7 +28,7 @@ def get_sales_data():
     The loop will repeatedly request data, until it is valid.
     """
     while True:
-        print("Please enter sales data from the last market.")
+        print("Please enter sales data from the last market day.")
         print("Data should be six numbers, sepateted by commas.")
         print("Exmple: 10,12,13,14,15,16\n")
 
@@ -64,7 +64,7 @@ def validate_data(values):
 
 def update_sales_worksheet(data):
     """
-    Update salse worksheet, add new row with the list data provided.
+    Update sales worksheet, add new row with the list data provided.
     """
     print("Updating Sales Worksheet......\n")
 
@@ -90,6 +90,16 @@ def calculate_surplus_data(sales_row):
         surplus_data.append(surplus)
     return surplus_data
 
+def update_surplus_worksheet(data):
+    """
+    Update surplus worksheet, add new row with the list data provided.
+    """
+    print("Updating Surplus Worksheet......\n")
+
+    surplus_worksheet = SHEET.worksheet("surplus")
+    surplus_worksheet.append_row(data)
+    print("Surplus worksheet updated successfully.\n")
+
 def main():
     """
     Run all program functions.
@@ -98,7 +108,9 @@ def main():
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
-    print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
+
+
 
 print("Welcome to Love Sandwiches Data Automation")
 
